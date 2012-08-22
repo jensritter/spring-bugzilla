@@ -5,7 +5,6 @@ import java.util.Map.Entry;
 
 import org.joda.time.LocalDate;
 import org.joda.time.format.*;
-import org.slf4j.*;
 
 import com.google.code.SpringBug.j2bugzilla.exceptions.InvalidDescriptionException;
 
@@ -15,10 +14,6 @@ import com.google.code.SpringBug.j2bugzilla.exceptions.InvalidDescriptionExcepti
  *
  */
 public class Bug {
-    
-    /** The Constant FMTBUGZILLA. */
-    public static final DateTimeFormatter FMTBUGZILLA = new DateTimeFormatterBuilder().appendYear(4, 4).appendLiteral('-').appendMonthOfYear(2).appendLiteral('-').appendDayOfMonth(2).toFormatter();
-
     /** The fmt bugzilla. */
     private final DateTimeFormatter fmtBugzilla = new DateTimeFormatterBuilder().appendYear(4, 4).appendLiteral('-').appendMonthOfYear(2).appendLiteral('-').appendDayOfMonth(2).toFormatter();
 
@@ -31,9 +26,6 @@ public class Bug {
     .appendYear(2, 4)
     .toFormatter();
 
-    
-    private static Logger logger = LoggerFactory.getLogger(Bug.class);
-    
     /**
      * Enum describing the legitimate values for a Bug's priority rank.
      *
@@ -233,7 +225,7 @@ public class Bug {
      */
     public void setDeadlineToday() {
         // egal bei welcher version. wenn ich eine bug submitte, muss deadline im main-map stehen.
-        internalState.put("deadline", FMTBUGZILLA.print(new LocalDate()));
+        internalState.put("deadline", fmtBugzilla.print(new LocalDate()));
     }
 
     /**
