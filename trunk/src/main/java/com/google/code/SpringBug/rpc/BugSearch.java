@@ -57,7 +57,7 @@ public class BugSearch implements BugzillaMethod {
         RESOLUTION("resolution"),
 
         /**
-         * The {@link com.google.code.SpringBug.j2bugzilla.Bug.Priority} field value
+         * The {@link com.google.code.SpringBug.Bug.Priority} field value
          */
         PRIORITY("priority"),
 
