@@ -1,8 +1,8 @@
-package com.google.code.SpringBug.j2bugzilla.rpc;
+package com.google.code.SpringBug.rpc;
 
 import java.util.*;
 
-import com.google.code.SpringBug.j2bugzilla.BugzillaMethod;
+import com.google.code.SpringBug.BugzillaMethod;
 
 /**
  * The <code>BugzillaVersion</code> class allows clients to query a particular

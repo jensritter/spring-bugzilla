@@ -1,4 +1,4 @@
-package com.google.code.SpringBug.j2bugzilla;
+package com.google.code.SpringBug;
 
 import org.apache.xmlrpc.XmlRpcException;
 

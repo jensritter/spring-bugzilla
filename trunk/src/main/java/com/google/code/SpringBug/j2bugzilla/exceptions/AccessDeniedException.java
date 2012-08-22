@@ -3,7 +3,7 @@ package com.google.code.SpringBug.j2bugzilla.exceptions;
 /**
  * An {@code AccessDeniedException} is thrown when client code attempts to access
  * a bug which is not available under Bugzilla's permission scheme. The user
- * may not have logged in with {@link com.google.code.SpringBug.j2bugzilla.rpc.LogIn} or their account
+ * may not have logged in with {@link com.google.code.SpringBug.rpc.LogIn} or their account
  * may simply lack the necessary permissions.
  * 
  * @author Tom

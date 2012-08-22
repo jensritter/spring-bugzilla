@@ -1,8 +1,8 @@
-package com.google.code.SpringBug.j2bugzilla.rpc;
+package com.google.code.SpringBug.rpc;
 
 import java.util.*;
 
-import com.google.code.SpringBug.j2bugzilla.*;
+import com.google.code.SpringBug.*;
 
 /**
  * The <code>CommentBug</code> class allows clients to add a new comment to an

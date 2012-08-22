@@ -7,4 +7,4 @@
  * {@link de.mitegro.bugzilla.j2bugzilla.BugzillaConnector#executeMethod(de.mitegro.bugzilla.j2bugzilla.BugzillaMethod)}
  * for processing.</p>
  */
-package com.google.code.SpringBug.j2bugzilla.rpc;
+package com.google.code.SpringBug.rpc;

@@ -1,4 +1,4 @@
-package com.google.code.SpringBug.j2bugzilla;
+package com.google.code.SpringBug;
 
 import java.util.Map;
 
@@ -39,5 +39,4 @@ public interface BugzillaMethod {
      * to call on the Bugzilla installation
      */
     String getMethodName();
-
 }
