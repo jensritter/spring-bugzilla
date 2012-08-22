@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--  per Code wird edifactparser-$(hostname).properties hinzugefügt -->
+	<bean id="rootPlaceholderConfig" class="org.jens.spring.test.HostnamePropertyConfigurer">
+	        <property name="ignoreResourceNotFound" value="true"/>
+	        <property name="locations">
+	            <list>
+	                <value>classpath:/org/jens/SpringBug/context.properties</value>
+	                <value>classpath:/context-test.properties</value>
+	            </list>
+	        </property>
+	</bean>
+</beans>

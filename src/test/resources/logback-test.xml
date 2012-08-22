@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false">
+
+	<property name="APP_NAME" value="logfile" />
+	<!--  Verkürztze Darstellung. Nur Uhrzeit und LoggerNamen -->
+    <appender name="RootConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+    	<!-- 
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        -->
+        <encoder>
+            <pattern>%date{HH:mm:ss} [%thread] %-5level %logger{20}\(%line\)%marker %msg%n</pattern>
+        </encoder>
+
+    </appender>
+
+	<turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
+		<Marker>SQL</Marker>
+		<OnMatch>ACCEPT</OnMatch> <!--  ACCEPT|DENY -->
+	</turboFilter>
+
+	<logger name="org.springframework" level="INFO" />
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="RootConsoleAppender"/>
+    </root>
+
+</configuration>
