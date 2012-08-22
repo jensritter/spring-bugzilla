@@ -1,6 +1,8 @@
-package com.google.code.SpringBug.j2bugzilla;
+package com.google.code.SpringBug.rpc;
 
 import java.util.*;
+
+import com.google.code.SpringBug.BugzillaMethod;
 
 
 /**

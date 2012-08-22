@@ -1,8 +1,8 @@
-package com.google.code.SpringBug.j2bugzilla.rpc;
+package com.google.code.SpringBug.rpc;
 
 import java.util.*;
 
-import com.google.code.SpringBug.j2bugzilla.*;
+import com.google.code.SpringBug.*;
 
 /**
  * This class allows clients to report a new {@link Bug} to a Bugzilla installation.

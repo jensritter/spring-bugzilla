@@ -1,4 +1,4 @@
-package com.google.code.SpringBug.j2bugzilla.rpc;
+package com.google.code.SpringBug.rpc;
 
 import java.io.*;
 import java.util.*;
@@ -6,7 +6,7 @@ import java.util.*;
 import org.apache.commons.codec.binary.Base64OutputStream;
 import org.jens.Shorthand.Swallow;
 
-import com.google.code.SpringBug.j2bugzilla.*;
+import com.google.code.SpringBug.*;
 
 /**
  * The Class AttachmentBug.

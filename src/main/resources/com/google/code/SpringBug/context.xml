@@ -8,19 +8,15 @@
  	<!-- Set Context-Search-Path ( separated with comma )-->
  	<context:component-scan base-package="com.google.code.SpringBug"/> 
  
-   	<!--  Location of propertiy-Files  -->
-	<bean id="rootPlaceholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-	        <property name="ignoreResourceNotFound" value="true"/>
-	        <property name="locations">
-	            <list>
-	                <value>classpath:/org/jens/SpringBug/context.properties</value>
-	            </list>
-	        </property>
-	</bean>
-	
-	<bean id="Bugzilla" class="org.jens.SpringBug.BugzillaConnector" factory-bean="org.jens.SpringBug.BugConnectionFactory" lazy-init="true" factory-method="connectTo">
+ 	<!--  Dieses factory-bean wird z.Zt. nicht von context: gefunden ?!? --> 
+ 	<bean class="com.google.code.SpringBug.BugConnectionFactory"/>
+ 
+	<!-- 	
+	<bean id="Bugzilla" class="com.google.code.SpringBug.BugzillaConnector" factory-bean="com.google.code.SpringBug.BugConnectionFactory" lazy-init="true" factory-method="connectTo">
 
 	</bean>
+	
+	 -->
 	
 	<!--  manual beans
 	<bean id="manual-bean" class="some.fqdn.class.name" >

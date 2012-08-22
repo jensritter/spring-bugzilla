@@ -1,6 +1,7 @@
-package com.google.code.SpringBug.j2bugzilla;
+package com.google.code.SpringBug;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 import org.joda.time.LocalDate;
 import org.joda.time.format.*;
@@ -8,46 +9,31 @@ import org.slf4j.*;
 
 import com.google.code.SpringBug.j2bugzilla.exceptions.InvalidDescriptionException;
 
-
 /**
- * The Class Bug.
+ * 
+ * @author Tom
+ *
  */
 public class Bug {
+    
+    /** The Constant FMTBUGZILLA. */
+    public static final DateTimeFormatter FMTBUGZILLA = new DateTimeFormatterBuilder().appendYear(4, 4).appendLiteral('-').appendMonthOfYear(2).appendLiteral('-').appendDayOfMonth(2).toFormatter();
 
-    /** The Constant LOG. */
-    private static final Logger LOG = LoggerFactory.getLogger(Bug.class);
-    /*
-    private String product = "Mitegro";
-    private String op_sys = "All";
-    private String platform = "All";
-    private String version = "unspecified";
-    private String priority = "P3";
-     */
-    /*
-    private String product;
-    private String op_sys;
-    private String platform;
-    private String version;
-    private String priority;
+    /** The fmt bugzilla. */
+    private final DateTimeFormatter fmtBugzilla = new DateTimeFormatterBuilder().appendYear(4, 4).appendLiteral('-').appendMonthOfYear(2).appendLiteral('-').appendDayOfMonth(2).toFormatter();
 
-    private String component;
-    private String summary;
-    private String severity = "";
-    private String description;
-    private String deadline;
-    private String estimated;
-    private List<String> cc = new ArrayList<String>();
-    private String assigned_to;
-     */
-    /** The keys which <em>must</em> have non-blank values for a bug to be properly submitted. */
-    private static String[] requiredKeys = {}; // "product", "component", "summary"
+    /** The fmt. */
+    private final DateTimeFormatter fmt = new DateTimeFormatterBuilder()
+    .appendDayOfMonth(2)
+    .appendLiteral(".")
+    .appendMonthOfYear(2)
+    .appendLiteral(".")
+    .appendYear(2, 4)
+    .toFormatter();
 
-    /**
-     * Keys which will default if not included. It is legal to leave them blank, but a warning may be
-     * raised if in debug mode.
-     */
-    private static String[] defaultKeys = {"description", "op_sys", "platform", "priority", "severity"};
-
+    
+    private static Logger logger = LoggerFactory.getLogger(Bug.class);
+    
     /**
      * Enum describing the legitimate values for a Bug's priority rank.
      *
@@ -64,37 +50,29 @@ public class Bug {
         P4,
         /** The P5. */
         P5}
-
+    
     /**
      * HashMap representing fields for each Bug. The Value for each Key is a <code>String</code>
      * <em>except</em> for the CC: field, which is an array of <code>Strings</code>.
      */
-    private Map<String, Object> internalState;
-
+    private final Map<String, Object> internalState;
+    
     /**
-     * Only for Compatibility with tom's bug
-     * 
-     * Constructor for creating a new {@link Bug} to submit to an installation.
-     * The constructor checks for required values, and throws an
-     *
-     * @param state A <code>Map</code> pairing required keys to values
-     * @throws InvalidDescriptionException if the state you provide excludes a required key/value pair.
-     * {@link InvalidDescriptionException} if one or more required values are missing.
+     * Constructor
+     * @param state
+     * @throws InvalidDescriptionException
      */
     public Bug(Map<String, Object> state) throws InvalidDescriptionException{
-        checkRequiredFields(state);
-        //If an exception is thrown from the above, the below will not execute.
-        //Therefore, all subsequent calls to methods on this Bug will fail with NPEs.
         internalState = state;
     }
-
+    
     /**
      * Plain Constructor. Fills no fields !
      */
     public Bug() {
         internalState = new HashMap<String,Object>();
     }
-
+    
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
@@ -104,38 +82,7 @@ public class Bug {
         result.append(getID()).append(" ").append(getPriority()).append(" ").append(getSummary());
         return result.toString();
     }
-
-    /**
-     * Internal method for determining whether a given <code>HashMap</code> is a valid
-     * representation of a {@link Bug} or not.
-     * @param state a collection of String keys and String values in a <code>HashMap</code>
-     * @throws InvalidDescriptionException if a required key/value pair is not provided
-     */
-    private static void checkRequiredFields(Map<String, Object> state) throws InvalidDescriptionException {
-        for(String str : requiredKeys) {
-            if(!state.containsKey(str)) {
-                throw new InvalidDescriptionException("Missing key/value pair: " + str);
-            }
-        }
-        for(String str : defaultKeys) {
-            if(!state.containsKey(str)) {
-                LOG.debug("Bug did not contain field " + str + "; a default will be used.");
-            }
-        }
-
-    }
-
-
-
-    /**
-     * Checks if is 3.
-     *
-     * @return true, if is 3
-     */
-    private boolean is3() {
-        return internalState.containsKey("internals");
-    }
-
+    
     /**
      * Gets the iD.
      *
@@ -148,16 +95,7 @@ public class Bug {
         }
         return value;
     }
-
-    /**
-     * Gets the internal state.
-     *
-     * @return the internal state
-     */
-    public Map<String, Object> getInternalState() {
-        return internalState;
-    }
-
+    
     /**
      * Returns how highly this bug is ranked.
      *
@@ -178,11 +116,40 @@ public class Bug {
         default: throw new RuntimeException("Unknown Priority:" + priority);
         }
     }
-
-
-    /** The Constant FMTBUGZILLA. */
-    public static final DateTimeFormatter FMTBUGZILLA = new DateTimeFormatterBuilder().appendYear(4, 4).appendLiteral('-').appendMonthOfYear(2).appendLiteral('-').appendDayOfMonth(2).toFormatter();
-
+    
+    /**
+     * Gets the summary.
+     *
+     * @return the summary
+     */
+    public String getSummary() {
+        return (String)internalState.get("summary");
+    }
+    
+    
+    /**
+     * Checks if the result is from a bugzilla V3.X installation..
+     *
+     * @return true, if is 3
+     */
+    private boolean is3() {
+        return internalState.containsKey("internals");
+    }
+    
+    /**
+     * Gets the internal state.
+     *
+     * (Simple Map-Copy. needs to be rewritten.)
+     * @return the internal state
+     */
+    public Map<String, Object> getInternalState() {
+        HashMap<String,Object> result = new HashMap<String,Object>();
+        for(Entry<String, Object> it : internalState.entrySet()) {
+            result.put(it.getKey(), it.getValue());
+        }
+        return result;
+    }
+    
     /**
      * Gets the deadline txt.
      *
@@ -204,7 +171,7 @@ public class Bug {
         }
         return "";
     }
-
+    
     /**
      * Gets the deadline.
      *
@@ -220,7 +187,7 @@ public class Bug {
         String day = time.substring(8,10);
         return new LocalDate(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
     }
-
+    
     /**
      * Sets the deadline.
      *
@@ -229,19 +196,7 @@ public class Bug {
     public void setDeadline(String value) {
         internalState.put("deadline", value);
     }
-
-    /** The fmt bugzilla. */
-    private final DateTimeFormatter fmtBugzilla = new DateTimeFormatterBuilder().appendYear(4, 4).appendLiteral('-').appendMonthOfYear(2).appendLiteral('-').appendDayOfMonth(2).toFormatter();
-
-    /** The fmt. */
-    private final DateTimeFormatter fmt = new DateTimeFormatterBuilder()
-    .appendDayOfMonth(2)
-    .appendLiteral(".")
-    .appendMonthOfYear(2)
-    .appendLiteral(".")
-    .appendYear(2, 4)
-    .toFormatter();
-
+    
     /**
      * Sets the deadline.
      *
@@ -250,7 +205,7 @@ public class Bug {
     public void setDeadline(LocalDate value) {
         setDeadline(fmtBugzilla.print(value));
     }
-
+    
     /**
      * Sets the deadline.
      *
@@ -272,7 +227,7 @@ public class Bug {
         }
         return "";
     }
-
+    
     /**
      * Sets the deadline today.
      */
@@ -292,8 +247,7 @@ public class Bug {
             values.remove("deadline");
         }
     }
-
-    // Properties :
+    
     /**
      * Gets the ccs.
      *
@@ -310,7 +264,7 @@ public class Bug {
         }
         return new ArrayList<String>();
     }
-
+    
     /**
      * Adds the cc.
      *
@@ -325,7 +279,7 @@ public class Bug {
         }
         internalState.put("cc", what);
     }
-
+    
     /**
      * Removes the cc.
      *
@@ -344,7 +298,7 @@ public class Bug {
         }
         return result;
     }
-
+    
     /**
      * Sets the cc.
      *
@@ -357,14 +311,14 @@ public class Bug {
         }
         internalState.put("cc", what);
     }
-
+    
     /**
      * Clear cc.
      */
     public void clearCc() {
         internalState.remove("cc");
     }
-
+    
     /**
      * Gets the product.
      *
@@ -379,7 +333,7 @@ public class Bug {
         }
         return value;
     }
-
+    
     /**
      * Sets the product.
      *
@@ -388,7 +342,7 @@ public class Bug {
     public void setProduct(String value) {
         internalState.put("product", value);
     }
-
+    
     /**
      * Gets the op_sys.
      *
@@ -403,6 +357,7 @@ public class Bug {
         }
         return (String)value;
     }
+    
 
     /**
      * Sets the op_sys.
@@ -412,7 +367,7 @@ public class Bug {
     public void setOp_sys(String op_sys) {
         internalState.put("op_sys", op_sys);
     }
-
+    
     /**
      * Gets the platform.
      *
@@ -498,15 +453,6 @@ public class Bug {
     }
 
     /**
-     * Gets the summary.
-     *
-     * @return the summary
-     */
-    public String getSummary() {
-        return (String)internalState.get("summary");
-    }
-
-    /**
      * Sets the summary.
      *
      * @param summary the new summary
@@ -532,12 +478,7 @@ public class Bug {
     public void setSeverity(String severity) {
         internalState.put("severity", severity);
     }
-    /*
-    public String getDescription() {
-        throw new RuntimeException("This should only be used while creating a bug");
-        //return (String)internalState.get("description");
-    }
-     */
+    
     /**
      * Sets the description.
      *
@@ -628,4 +569,5 @@ public class Bug {
     public List<Integer> getDepends() {
         return getBugIdsFromFeld("depends_on");
     }
+    
 }

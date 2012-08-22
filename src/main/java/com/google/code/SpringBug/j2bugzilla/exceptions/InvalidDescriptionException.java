@@ -1,6 +1,6 @@
 package com.google.code.SpringBug.j2bugzilla.exceptions;
 
-import com.google.code.SpringBug.j2bugzilla.Bug;
+import com.google.code.SpringBug.Bug;
 
 /**
  * This exception is thrown when a {@link Bug} is created with an invalid
