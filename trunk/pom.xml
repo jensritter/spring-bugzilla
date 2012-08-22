@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>masterpom7</artifactId>
+		<groupId>org.jens</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.jens</groupId>
+	<artifactId>SpringBug</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<description>Simple-Spring-Application</description>
+
+	<!--
+		URL muss relativ bei Multi-Pom-Projekten sein. - Sonst kann auch eine
+		komplette url eingegeben werden
+	-->
+	<url>${project.artifactId}</url>
+
+	<properties>
+		<!--  Die Main-Class ( verwendung f. JNLP + Exec + Jar )  -->
+		<mainclass>org.jens.SpringBug.Main</mainclass>
+	</properties>
+
+     <dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jens</groupId>
+			<artifactId>Shorthand</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- 
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId> 
+			<scope>runtime</scope>
+		</dependency>
+		-->
+		<dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        <!--  Spring -->
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>org.springframework.context</artifactId>
+        </dependency>  
+  
+		<dependency>
+        	<groupId>org.jens</groupId>
+        	<artifactId>spring-test</artifactId>
+        	<scope>test</scope>
+        </dependency>
+        
+        <!--  Database Needed ?  -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>		
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlrpc</groupId>
+			<artifactId>xmlrpc-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+
+
+
+	</dependencies>
+
+</project>
