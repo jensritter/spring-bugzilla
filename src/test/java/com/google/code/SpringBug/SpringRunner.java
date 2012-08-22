@@ -1,4 +1,4 @@
-package org.jens.SpringBug;
+package com.google.code.SpringBug;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
