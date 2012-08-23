@@ -1,4 +1,4 @@
-package com.google.code.SpringBug.j2bugzilla.exceptions;
+package com.google.code.SpringBug.exceptions;
 
 /**
  * The <code>NoSuchIdException</code> is thrown when a bug cannot be matched against

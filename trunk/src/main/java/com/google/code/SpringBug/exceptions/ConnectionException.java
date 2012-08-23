@@ -1,4 +1,4 @@
-package com.google.code.SpringBug.j2bugzilla.exceptions;
+package com.google.code.SpringBug.exceptions;
 
 /**
  * <code>ConnectionException</code> is thrown any time there is an error trying to access

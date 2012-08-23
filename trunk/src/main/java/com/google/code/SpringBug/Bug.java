@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 import org.joda.time.LocalDate;
 import org.joda.time.format.*;
 
-import com.google.code.SpringBug.j2bugzilla.exceptions.InvalidDescriptionException;
+import com.google.code.SpringBug.exceptions.InvalidDescriptionException;
 
 /**
  * 

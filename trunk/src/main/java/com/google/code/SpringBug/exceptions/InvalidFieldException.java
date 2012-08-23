@@ -1,4 +1,4 @@
-package com.google.code.SpringBug.j2bugzilla.exceptions;
+package com.google.code.SpringBug.exceptions;
 
 /**
  * A {@code InvalidFieldException} is thrown when a client attempts to file

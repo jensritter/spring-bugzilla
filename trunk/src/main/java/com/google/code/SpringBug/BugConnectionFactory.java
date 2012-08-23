@@ -4,7 +4,7 @@ import java.net.URL;
 
 import org.springframework.stereotype.Service;
 
-import com.google.code.SpringBug.j2bugzilla.exceptions.ConnectionException;
+import com.google.code.SpringBug.exceptions.ConnectionException;
 
 
 @Service
