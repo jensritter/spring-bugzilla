@@ -8,7 +8,7 @@ import org.apache.xmlrpc.*;
 import org.apache.xmlrpc.client.*;
 import org.slf4j.*;
 
-import com.google.code.SpringBug.j2bugzilla.exceptions.*;
+import com.google.code.SpringBug.exceptions.*;
 import com.google.code.SpringBug.rpc.*;
 import com.google.code.SpringBug.rpc.ProductGet.Product;
 

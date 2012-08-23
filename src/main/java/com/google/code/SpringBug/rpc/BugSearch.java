@@ -5,7 +5,7 @@ import java.util.*;
 import org.slf4j.*;
 
 import com.google.code.SpringBug.*;
-import com.google.code.SpringBug.j2bugzilla.exceptions.InvalidDescriptionException;
+import com.google.code.SpringBug.exceptions.InvalidDescriptionException;
 
 /**
  * This class provides convenience methods for searching for {@link Bug}s on your installation.

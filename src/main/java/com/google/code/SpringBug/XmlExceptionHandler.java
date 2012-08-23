@@ -2,7 +2,7 @@ package com.google.code.SpringBug;
 
 import org.apache.xmlrpc.XmlRpcException;
 
-import com.google.code.SpringBug.j2bugzilla.exceptions.*;
+import com.google.code.SpringBug.exceptions.*;
 
 
 /**

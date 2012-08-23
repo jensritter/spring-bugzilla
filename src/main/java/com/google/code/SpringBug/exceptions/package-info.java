@@ -7,4 +7,4 @@
  * is {@link jbugz.exceptions.InvalidDescriptionException}, thrown when a client
  * attempts to create a {@link de.mitegro.bugzilla.j2bugzilla.Bug} without all required fields.
  */
-package com.google.code.SpringBug.j2bugzilla.exceptions;
+package com.google.code.SpringBug.exceptions;

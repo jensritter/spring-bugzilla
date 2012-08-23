@@ -1,4 +1,4 @@
-package com.google.code.SpringBug.j2bugzilla.exceptions;
+package com.google.code.SpringBug.exceptions;
 
 /**
  * An {@code AccessDeniedException} is thrown when client code attempts to access

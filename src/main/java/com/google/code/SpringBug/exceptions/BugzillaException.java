@@ -1,4 +1,4 @@
-package com.google.code.SpringBug.j2bugzilla.exceptions;
+package com.google.code.SpringBug.exceptions;
 
 /**
  * <code>BugzillaException</code> indicates that Bugzilla has returned a fault rather 
